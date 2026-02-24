@@ -1,11 +1,12 @@
-/* DIVs 2D Rectangles
+github/* DIVs 2D Rectangles
 */
 //
-println(displayWidth, displayHeight)
+println(displayWidth, displayHeight);
 fullScreen();
 int appWidth = displayWidth;
 int appHeight = displayHeight;
 //
+//Population using unitless ratios (i.e. millimeters to pixels)
 int paperWidth = 279;
 int paperHeight = 216;
 float DivX = appWidth * ??? / paperWidth;
@@ -33,3 +34,15 @@ rect( LoopSongDivX, LoopSongDivY, LoopSongDivWidth, LoopSongDivHeight );
 rect( ProgressBarDivX, ProgressBarDivY, ProgressBarDivWidth, ProgressBarDivHeight );
 rect( ElapsedTimeDivX,  ElapsedTimeDivY,  ElapsedTimeDivWidth,  ElapsedTimeDivHeight );
 rect( DurationTimeDivX, DurationTimeDivY, DurationTimeDivWidth, DurationTimeDivHeight );
+float DivX = appWidth * 0.00 / Title;
+float DivY = appHeight * 0.09 / Title ;
+float DivWidth = appWidth * 0.00 / Lyrics;
+float DivHeight = appHeight * 0.32 / Lyrics;
+float DivX = appWidth * 0.00 / Image;
+float DivY = appHeight * 0.73 / Image ;
+float DivWidth = appWidth * 0.00 / PlayButtons;
+float DivHeight = appHeight * 0.135 / PlayButtons;
+float DivX = appWidth * 0.00 / ProgressBar;
+float DivY = appHeight * 0.235 / ProgressBar ;
+float DivWidth = appWidth * 0.00 / TimeLeft;
+float DivHeight = appHeight * 0.245 / Timeleft;
