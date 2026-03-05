@@ -1,5 +1,5 @@
 github/* DIVs 2D Rectangles
-*/
+ */
 //
 println(displayWidth, displayHeight);
 fullScreen();
@@ -13,7 +13,9 @@ float DivX = appWidth * ??? / paperWidth;
 float DivY = appHeight * ??? / paperHeight ;
 float DivWidth = appWidth * ??? / paperWidth;
 float DivHeight = appHeight * ??? / paperHeight;
-
+//
+//DIVs
+//rect( DivX, DivY, DivWidth, DivHeight );
 rect( DivX, DivY, DivWidth, DivHeight );
 rect( songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight );
 rect( LyricsDivX, LyricsDivY, LyricsDivWidth, LyricsDivHeight );
