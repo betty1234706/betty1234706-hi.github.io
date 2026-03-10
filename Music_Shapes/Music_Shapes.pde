@@ -1,4 +1,4 @@
-/* DIVs: 2D Rectangles
+/* DIVs: 2D Rectangles(Horizontal layout)
 */
 
 println(displayWidth, displayHeight);
@@ -104,8 +104,8 @@ line( loopSymbolDivX2, loopSymbolDivY2, loopSymbolDivX3, loopSymbolDivY3 );
 //
 //Shuffle Button
 line( shuffleSymbolDivX1, shuffleSymbolDivY1, shuffleSymbolDivX2, shuffleSymbolDivY2 );
-<<<<<<< HEAD
+//
 line( shuffleSymbolDivX3, shuffleSymbolDivY3, shuffleSymbolDivX4, shuffleSymbolDivY4 );
-=======
+//
 line( shuffleSymbolDivX3, shuffleSymbolDivY3, shuffleSymbolDivX4, shuffleSymbolDivY4 );
->>>>>>> 798343f01f41e8d87284ad17e4cad6f6b1d58a18
+//
