@@ -85,32 +85,32 @@ float shuffleSymbolDivX4 = DivX + DivWidth*3/4;
 float shuffleSymbolDivY4 = DivY + DivHeight*3/4;
 //DIVs
 //rect( DivX, DivY, DivWidth, DivHeight );
-rect( DivX, DivY, DivWidth, DivHeight );
+//rect( DivX, DivY, DivWidth, DivHeight );
 //
 rect( stopSymbolDivX, stopSymbolDivY, stopSymbolDivWidth, stopSymbolivHeight );
-//triangle( playSymbolDivX1, playSymbolDivY2, playSymbolDivX3, playSymbolDivY4, playSymbolDivX5, playSymbolDivY6);
-line( muteSymbolDivX1, muteSymbolDivY2, muteSymbolDivX3, muteSymbolDivY4 );
+triangle( playSymbolDivX1, playSymbolDivY2, playSymbolDivX3, playSymbolDivY4, playSymbolDivX5, playSymbolDivY6);
+//line( muteSymbolDivX1, muteSymbolDivY2, muteSymbolDivX3, muteSymbolDivY4 );
 //
 //Fast Forward 10 Sec
-triangle( ff10SymbolDivX1, ff10SymbolDivY1, ff10SymbolDivX2, ff10SymbolDivY2, ff10SymbolDivX3, ff10SymbolDivY3 );
+//triangle( ff10SymbolDivX1, ff10SymbolDivY1, ff10SymbolDivX2, ff10SymbolDivY2, ff10SymbolDivX3, ff10SymbolDivY3 );
 //
 //Fast Forward 30 Sec
-triangle( ff30SymbolDivX1, ff30SymbolDivY1, ff30SymbolDivX2, ff30SymbolDivY2, ff30SymbolDivX3, ff30SymbolDivY3 );
+//triangle( ff30SymbolDivX1, ff30SymbolDivY1, ff30SymbolDivX2, ff30SymbolDivY2, ff30SymbolDivX3, ff30SymbolDivY3 );
 //
 //Rewind 10 Sec
-triangle( rw10SymbolDivX1, rw10SymbolDivY1, rw10SymbolDivX2, rw10SymbolDivY2, rw10SymbolDivX3, rw10SymbolDivY3 );
+//triangle( rw10SymbolDivX1, rw10SymbolDivY1, rw10SymbolDivX2, rw10SymbolDivY2, rw10SymbolDivX3, rw10SymbolDivY3 );
 //
 //Rewind 30 Sec
-triangle( rw30SymbolDivX1, rw30SymbolDivY1, rw30SymbolDivX2, rw30SymbolDivY2, rw30SymbolDivX3, rw30SymbolDivY3 );
+//triangle( rw30SymbolDivX1, rw30SymbolDivY1, rw30SymbolDivX2, rw30SymbolDivY2, rw30SymbolDivX3, rw30SymbolDivY3 );
 //
 //Loop Button
-line( loopSymbolDivX1, loopSymbolDivY1, loopSymbolDivX2, loopSymbolDivY2 );
-line( loopSymbolDivX2, loopSymbolDivY2, loopSymbolDivX3, loopSymbolDivY3 );
+//line( loopSymbolDivX1, loopSymbolDivY1, loopSymbolDivX2, loopSymbolDivY2 );
+//line( loopSymbolDivX2, loopSymbolDivY2, loopSymbolDivX3, loopSymbolDivY3 );
 //
 //Shuffle Button
-line( shuffleSymbolDivX1, shuffleSymbolDivY1, shuffleSymbolDivX2, shuffleSymbolDivY2 );
+//line( shuffleSymbolDivX1, shuffleSymbolDivY1, shuffleSymbolDivX2, shuffleSymbolDivY2 );
 //
-line( shuffleSymbolDivX3, shuffleSymbolDivY3, shuffleSymbolDivX4, shuffleSymbolDivY4 );
+//line( shuffleSymbolDivX3, shuffleSymbolDivY3, shuffleSymbolDivX4, shuffleSymbolDivY4 );
 //
-line( shuffleSymbolDivX3, shuffleSymbolDivY3, shuffleSymbolDivX4, shuffleSymbolDivY4 );
+//line( shuffleSymbolDivX3, shuffleSymbolDivY3, shuffleSymbolDivX4, shuffleSymbolDivY4 );
 //
