@@ -1,5 +1,5 @@
 //
-/* DIVs: 2D Rectangles(Horizontal layout)
+/* DIVs: 2D Rectangles Assignment;
 */
 //
 /* DIVs: 2D Rectangles - Horizontal Layout */
@@ -35,12 +35,17 @@ float muteSymbolDivX3 = DivX + DivWidth*3/4;
 float muteSymbolDivY4 = DivY +  DivHeight*3/4;
 //
 //Fast Forward 10 Sec Button
-float ff10SymbolDivX1 = DivX + DivWidth*1/4;
-float ff10SymbolDivY1 = DivY + DivHeight*1/4;
-float ff10SymbolDivX2 = DivX + DivWidth*1/2;
-float ff10SymbolDivY2 = DivY + DivHeight*1/4;
-float ff10SymbolDivX3 = DivX + DivWidth*3/4;
-float ff10SymbolDivY3 = DivY + DivHeight*1/2;
+float ff10SymbolDivX1 = DivX + DivWidth*1/8;
+float ff10SymbolDivY1 = DivY + DivHeight*2/8;
+float ff10SymbolDivX2 = DivX + DivWidth*1/8;
+float ff10SymbolDivY2 = DivY + DivHeight*6/8;
+float ff10SymbolDivX3 = DivX + DivWidth*4/8;
+float ff10SymbolDivY3 = DivY + DivHeight*4/8;
+float ff10SymbolDivX4= DivX + DivWidth*2/8;
+float ff10SymbolDivY4 = DivY + DivHeight*4/8;
+float ff10SymbolDivX5 = DivX + DivWidth*6/8;
+float ff10SymbolDivY5 = DivY + DivHeight*7/8;
+//float ff10SymbolDivX6 = DivX + DivWidth*4/8;
 //
 //Fast Forward 30 Sec Button
 float ff30SymbolDivX1 = DivX + DivWidth*1/4;
@@ -84,10 +89,9 @@ float shuffleSymbolDivY3 = DivY + DivHeight*3/4;
 float shuffleSymbolDivX4 = DivX + DivWidth*3/4;
 float shuffleSymbolDivY4 = DivY + DivHeight*3/4;
 //DIVs
-//rect( DivX, DivY, DivWidth, DivHeight );
-//rect( DivX, DivY, DivWidth, DivHeight );
+rect( DivX, DivY, DivWidth, DivHeight );
 //
-rect( stopSymbolDivX, stopSymbolDivY, stopSymbolDivWidth, stopSymbolivHeight );
+//rect( stopSymbolDivX, stopSymbolDivY, stopSymbolDivWidth, stopSymbolivHeight );
 triangle( playSymbolDivX1, playSymbolDivY2, playSymbolDivX3, playSymbolDivY4, playSymbolDivX5, playSymbolDivY6);
 //line( muteSymbolDivX1, muteSymbolDivY2, muteSymbolDivX3, muteSymbolDivY4 );
 //
