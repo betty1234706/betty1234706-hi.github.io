@@ -4,35 +4,28 @@
 //Display
 fullScreen();
 //
-String upArrow = "../../";
+String upArrow = "..";
 String dependanciesFolder = "Dependences/";
 String imagesFolder = "Images/";
-String imageName = "0x1900-000000-80-0-0";
+String imageName1 = "0x1900-000000-80-0-0";
+String imageName2= " basketball";
+String imageName3= "Volleyball";
 String fileExtension = ".jpg";
 String open = "/";
 //
 //Concatenation
-//See Absolute Pathway; \\C:\Users\b.teklemariamaraya\Documents\GitHub\betty1234706-hi.github.io\Dependences\Images
-//See Relative Pathway; Dependancies\Images
-String imageDirectory = upArow + open + uparow + open + dependanciesFolder + imageFolder + open + imageName + fileExtension;
-String pathway1, pathway2, pathway3;
-for () 
-  pathway
-String 
-  String = imageDirectory + imageName2 + fileExtension;
-String  = imageDirectory + imageName3 + fileExtension;
+//Note, Cut Out, See Absolute Pathway:
+//See Relative Pathway: Dependencies\Images
+String imageDirectory = upArrow + open + upArrow + open + dependanciesFolder + open + imagesFolder + open;
+String pathway1 = imageDirectory + imageName1 + fileExtension;
+String pathway2 = imageDirectory + imageName2 + fileExtension;
+String pathway3 = imageDirectory + imageName3 + fileExtension;
 //println(pathway);
 //
-
-
-image2 = loadimage( pathway2 );
-image3 = loadImage( pathway3 );
+PImage image1 = loadImage( pathway1 );
+PImage image2 = loadImage( pathway2 );
+PImage image3 = loadImage( pathway3 );
 //
-
-Image2 = loadImage( pathway2 );
-image3 = loadimage( pathway3 );
-//
-
-image(image1, 0,0);
-image(image2, 0,0);
-image(image3, 0,0);
+image(image1, 0, 0);
+image(image2, 0, 0);
+image(image3, 0, 0);
