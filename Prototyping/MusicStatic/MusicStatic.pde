@@ -34,7 +34,8 @@ int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
 //Display
 size( 700, 500); //width ??height
 //fullScreen();  //displayWidth //displayHeight
-int appwidth = width
-
-
-//Static Music
+int appwidth = width; //Best Practice
+int appHeight = height;
+//
+//Music Loading - STRUCTURED Review
+minim = new Minim(this); //Manditory
