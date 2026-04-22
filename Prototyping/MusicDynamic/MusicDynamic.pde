@@ -9,9 +9,9 @@ import ddf.minim.ugens.*;
 //Global Variables
 Minim minim;  //initates entire class
 int numberOfSongs = 1; // Best Practice
-int numberOfSoundEffects = 1; // Fixed: added 's' to match usage below
+int numberOfSoundEffects = 1; //
 AudioPlayer[] playlist = new AudioPlayer[ numberOfSongs ];
-AudioPlayer[] soundeffects = new AudioPlayer[ numberOfSoundEffects ]; // Fixed: changed size variable to match
+AudioPlayer[] soundeffects = new AudioPlayer[ numberOfSoundEffects ]; // 
 int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
 //
 void setup() {
@@ -24,27 +24,25 @@ void setup() {
   minim = new Minim(this); //Mandatory
   
   String upArrow = "..";
-  String open = "/";
   String musicFolder = "Music"; 
-  String soundEffectsFolder = "Sound Effects"; 
-  String dependanciesFolder = "Dependencies"; 
+  String soundEffectsFolder = "Sound Effects/"; 
+  String dependanciesFolder = "Dependences/"; 
   String songName1 = "Swim";
   String soundEffect1 = "The_Simplest_Sting";
   String fileExtension_mp3 = ".mp3";
+  String open = "/";
   //
-  String musicDirectory = upArrow + open + upArrow + open + dependanciesFolder + open + musicFolder + open ; 
-  String soundEffectsDirectory = upArrow + open + upArrow + open + dependanciesFolder + open + soundEffectsFolder + open ; 
+  String musicDirectory = upArrow + open + upArrow + open + upArrow + open  + dependanciesFolder + open + musicFolder + open ; 
+  String soundEffectsDirectory = upArrow + open + upArrow + open + upArrow + open + dependanciesFolder + open + soundEffectsFolder + open ; 
   String pathway = musicDirectory + songName1 + fileExtension_mp3; 
   
   println(pathway);
   
-  // Fixed: 'playlist' was lowercase in declaration but 'playList' in usage
   playlist[ currentSong ] = minim.loadFile( pathway ); 
   
   pathway = soundEffectsDirectory + soundEffect1 + fileExtension_mp3; 
   println(pathway);
   
-  // Fixed: 'soundeffects' was lowercase in declaration but 'soundEffects' in usage
   soundeffects[currentSong] = minim.loadFile( pathway ); 
   //
   if ( playlist[currentSong]==null || soundeffects[currentSong]==null ) { 
