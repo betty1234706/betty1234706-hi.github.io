@@ -1,4 +1,5 @@
 
+
 //Library - Minim
 import ddf.minim.*;
 import ddf.minim.effects.*;
@@ -8,7 +9,7 @@ import ddf.minim.ugens.*;
 //
 //Global Variables
 Minim minim;  //initates entire class
-int numberOfSongs = 1; // Best Practice
+int numberOfSongs = 3; // Best Practice
 int numberOfSoundEffects = 1; //
 AudioPlayer[] playlist = new AudioPlayer[ numberOfSongs ];
 AudioPlayer[] soundeffects = new AudioPlayer[ numberOfSoundEffects ]; // 
@@ -17,23 +18,24 @@ int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
 void setup() {
   //Display
   size( 700, 500); 
+  //fullScreen(); //displayWidth //displayHeight
   int appwidth = width; //Best Practice
   int appHeight = height;
   //
   //Music Loading - STRUCTURED Review
-  minim = new Minim(this); //Mandatory
-  
+  minim = new Minim(this); //Mandatory 
   String upArrow = "..";
-  String musicFolder = "Music"; 
+  String open = "/";
+  String MusicFolder = "Music"; 
   String soundEffectsFolder = "Sound Effects/"; 
-  String dependanciesFolder = "Dependences/"; 
-  String songName1 = "Swim";
+  String dependencesFolder = "Dependences/"; 
+  String songName1 = "TWICE (트와이스) - What is Love_ [MP3 Audio] [5th Mini Album]";
   String soundEffect1 = "The_Simplest_Sting";
   String fileExtension_mp3 = ".mp3";
-  String open = "/";
+  
   //
-  String musicDirectory = upArrow + open + upArrow + open + upArrow + open  + dependanciesFolder + open + musicFolder + open ; 
-  String soundEffectsDirectory = upArrow + open + upArrow + open + upArrow + open + dependanciesFolder + open + soundEffectsFolder + open ; 
+  String musicDirectory = upArrow + open + upArrow + open + dependencesFolder + open + MusicFolder + open ; 
+  String soundEffectsDirectory = upArrow + open + upArrow + open + dependencesFolder + open + soundEffectsFolder + open ; 
   String pathway = musicDirectory + songName1 + fileExtension_mp3; 
   
   println(pathway);
