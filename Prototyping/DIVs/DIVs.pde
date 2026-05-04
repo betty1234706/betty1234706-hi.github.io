@@ -1,70 +1,78 @@
-/* DIVs 2D Rectangles
-*/
-//+
-println(displayWidth, displayHeight);
-fullScreen();
-int appWidth = displayWidth;
-int appHeight = displayHeight;
-//
-//Population using unitless ratios (i.e. millimeters to pixels)
-int paperWidth = 279;
-int paperHeight = 216;
-float DivX = appWidth * 197 / paperWidth;
-float DivY = appHeight * 260 / paperHeight ;
-float DivWidth = appWidth * 197 / paperWidth;
-float DivHeight = appHeight * 260 / paperHeight;
-//
-//DIVs
-//rect( DivX, DivY, DivWidth, DivHeight );
-rect( DivX, DivY, DivWidth, DivHeight );
-//rect( songtitleDivX, songtitleDivY, songtitleDivWidth, songtitleDivHeight );
-//rect( lyricsDivX, LyricsDivY, LyricsDivWidth, LyricsDivHeight );
-//rect( imageDivX, ImageDivY, ImageDivWidth, ImageDivHeight );
-//rect( artistDivX, ArtistDivY, ArtistDivWidth, ArtistDivHeight );
-//rect( dateDivX, DateDivY, DateDivWidth, DateDivHeight );
-//rect( genreDivX, GenreDivY, GenreDivWidth, GenreDivHeight );
-//rect( previousSongDivX, PreviousSongDivY, PreviousSongDivWidth, PreviousSongDivHeight );
-//rect( back30SecondsDivX, Back30SecondsDivY, Back30SecondsDivWidth, Back30SecondsDivHeight );
-//rect( back10SecondsDivX, Back10SecondsDivY, Back10SecondsDivWidth, Back10SecondsDivHeight );
-//rect( pauseDivX, PauseDivY, PauseDivWidth, PauseDivHeight );
-//rect( playDivX, PlayDivY, PlayDivWidth, PlayDivHeight );
-//rect( fastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
-//rect( fastFastForwardDivX, FastFastForwardDivY, FastFastForwardDivWidth, FastFastForwardDivHeight );
-//rect( nextSongDivX, NextSongDivY, NextSongDivWidth, NextSongDivHeight );
-//rect( mutebuttonDivX, MuteButtonDivY, MuteButtonDivWidth, MuteButtonDivHeight );
-//rect( loopSongDivX, LoopSongDivY, LoopSongDivWidth, LoopSongDivHeight );
-//rect( progressBarDivX, ProgressBarDivY, ProgressBarDivWidth, ProgressBarDivHeight );
-//rect( elapsedTimeDivX,  ElapsedTimeDivY,  ElapsedTimeDivWidth,  ElapsedTimeDivHeight );
-//rect( durationTimeDivX, DurationTimeDivY, DurationTimeDivWidth, DurationTimeDivHeight );
-*/
-//
-float songTitleDivX = appWidth * 42.0 / paperwidth;
-float songTitleDivY = appHeight * 9.0 / paperheight ;
-float songTitleDivWidth = appWidth * 85.0 / paperwidth;
-float songTitleDivHeight = appHeight * 2.0 / paperheight;
-rect( songtitleDivX, songtitleDivY, songtitleDivWidth, songtitleDivHeight );
-float lyricsDivX = appWidth * 42.0 / paperwidth;
-float lyricsDivY = appHeight * 32.0 / paperheight ;
-float lyricsDivWidth = appWidth * 85.0 / paperwidth;
-float lyricsDivHeight = appHeight * 3.0 / paperheight;
-rect( lyricsDivX, LyricsDivY, LyricsDivWidth, LyricsDivHeight );
-float ImageDivX = appWidth * 42.0 / paperwidth;
-float ImageDivY = appHeight * 73.0 / paperheight ;
-float ImageDivX = appWidth * 5.0 / paperwidth;
-float ImageDivY = appHeight * 3.0 / paperheight ;
-rect( imageDivX, ImageDivY, ImageDivWidth, ImageDivHeight );
-float PlayButtonsDivX = appWidth * 0.00 / paperwidth ;
-float PlayButtonsDivY = appHeight * 135.0 / paperheight ;
-float PlayButtonsDivWidth = appWidth * 2.0 / paperwidth;
-float PlayButtonsDivHeight = appHeight * 25.0 / paperheight;
-//
-float progressBarDivX = appWidth * 0.00 / paperwidth;
-float progressBarDivY = appHeight * 235.0 / paperheight ;
-float progressBarDivX = appWidth * 194.0 / paperwidth;
-float progressBarDivY = appHeight * 8.0 / paperheight ;
-rect( progressBarDivX, ProgressBarDivY, ProgressBarDivWidth, ProgressBarDivHeight );
-float TimeLeftDivX = appWidth * 0.00 / paperwidth;
-float TimeLeftDivY = appHeight * 245.0 / paperheight ;
-float TimeLeftDivWidth = appWidth * 55.0 / paperwidth;
-float TimeLeftDivHeight = appHeight * 14.0 / paperheight;
-rect( elapsedTimeDivX,  ElapsedTimeDivY,  ElapsedTimeDivWidth,  ElapsedTimeDivHeight );
+/* DIVs 2D Rectangles, Assignment - FINAL STABLE VERSION
+ - All rect() moved to draw() so they stay visible
+ - Includes: Title, Lyrics, Image, 88mm Right Boxes, 10 Buttons, Progress Bar
+ - Fixed: No more <EOF> error
+ */
+
+// 1. Global Variables
+int appWidth, appHeight;
+int paperWidth = 279; 
+int paperHeight = 216; 
+
+void setup() {
+  fullScreen();
+  appWidth = displayWidth;
+  appHeight = displayHeight;
+}
+
+void draw() {
+  background(255); // Clears screen to white every frame
+  noFill();        
+  stroke(0);       // Black outlines
+  
+  // --- 2. LEFT SIDE (85mm boxes from sketch) ---
+  float leftX = appWidth * 7 / paperWidth;
+  
+  // Song Title
+  rect(leftX, appHeight * 9 / paperHeight, appWidth * 85 / paperWidth, appHeight * 23 / paperHeight); 
+  
+  // Lyrics
+  rect(leftX, appHeight * 35 / paperHeight, appWidth * 85 / paperWidth, appHeight * 38 / paperHeight); 
+
+  // Image Box at (0, 73)
+  rect(appWidth * 0 / paperWidth, appHeight * 73 / paperHeight, appWidth * 59 / paperWidth, appHeight * 40 / paperHeight);
+
+  // --- 3. RIGHT SIDE (88mm boxes from sketch) ---
+  float rightX = appWidth * 180 / paperWidth; 
+  float rightW = appWidth * 88 / paperWidth;
+  float rightH = appHeight * 19 / paperHeight;
+
+  rect(rightX, appHeight * 9 / paperHeight, rightW, rightH);
+  rect(rightX, appHeight * 35 / paperHeight, rightW, rightH);
+  rect(rightX, appHeight * 60 / paperHeight, rightW, rightH);
+
+  // --- 4. 10 BUTTON ROW (Y=135) ---
+  float btnW_mm = 25.0; 
+  float btnH_mm = 25.0;
+  float btnY_mm = 135.0;
+  float gap_mm = 2.0;
+  
+  float bW = appWidth * btnW_mm / paperWidth;
+  float bH = appHeight * btnH_mm / paperHeight;
+  float bY = appHeight * btnY_mm / paperHeight;
+
+  for (int i = 0; i < 10; i++) {
+    float xPos = appWidth * (i * (btnW_mm + gap_mm)) / paperWidth;
+    rect(xPos, bY, bW, bH);
+  }
+
+  // --- 5. PROGRESS BAR (The long box at Y=235) ---
+  float progX = appWidth * 0 / paperWidth;
+  float progY = appHeight * 235 / paperHeight;
+  float progW = appWidth * 194 / paperWidth;
+  float progH = appHeight * 10 / paperHeight;
+  
+  rect(progX, progY, progW, progH); // This is your progress bar!
+
+  // Shaded Progress Indicator (The little square)
+  fill(100); 
+  rect(appWidth * 50 / paperWidth, progY, appWidth * 10 / paperWidth, progH);
+  noFill();
+
+  // --- 6. TIME STAMP BOXES (Y=245) ---
+  float timeY = appHeight * 245 / paperHeight;
+  rect(appWidth * 0 / paperWidth, timeY, appWidth * 40 / paperWidth, appHeight * 14 / paperHeight);   // Elapsed
+  rect(appWidth * 182 / paperWidth, timeY, appWidth * 42 / paperWidth, appHeight * 14 / paperHeight); // Remaining
+  rect(appWidth * 224 / paperWidth, timeY, appWidth * 55 / paperWidth, appHeight * 14 / paperHeight); // Total
+
+} // End of draw
