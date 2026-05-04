@@ -1,1 +1,21 @@
-
+/* Music App, Final Project
+*/
+//
+//Minim Library
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+//
+//Global Variables
+//
+void setup() {}//End setup
+//
+void draw() {}//End Draw
+//
+void mousePressed() {}//End Mouse Pressed
+//
+void keyPressed() {}//End Key Pressed
+//
