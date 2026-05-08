@@ -1,13 +1,13 @@
-/* DIVs 2D Rectangles, Assignment - FINAL STABLE VERSION
- - All rect() moved to draw() so they stay visible
- - Includes: Title, Lyrics, Image, 88mm Right Boxes, 10 Buttons, Progress Bar
- - Fixed: No more <EOF> error
+/* DIVs 2D Rectangles - ULTIMATE SYMMETRICAL VERSION
+ - Standardized Margins: All left-side elements share a single alignment line.
+ - Dynamic Right Alignment: Right boxes hug the right margin perfectly.
+ - Clean Button Loop: No staggered edges or rounding gaps.
  */
 
 // 1. Global Variables
 int appWidth, appHeight;
-int paperWidth = 279; 
-int paperHeight = 216; 
+float paperWidth = 279.0;  
+float paperHeight = 216.0; 
 
 void setup() {
   fullScreen();
@@ -16,63 +16,80 @@ void setup() {
 }
 
 void draw() {
-  background(255); // Clears screen to white every frame
+  background(255); // White background
   noFill();        
   stroke(0);       // Black outlines
+  strokeWeight(1); // Crisp 1-pixel lines
   
-  // --- 2. LEFT SIDE (85mm boxes from sketch) ---
-  float leftX = appWidth * 7 / paperWidth;
+  // --- 2. SCALING & MARGINS ---
+  float wScale = appWidth / paperWidth;
+  float hScale = appHeight / paperHeight;
+  
+  // This 'margin' ensures everything on the left starts at the exact same spot
+  float margin = 10.0 * wScale; 
+
+  // --- 3. LEFT SIDE (Title, Lyrics, Image) ---
+  float leftW = 85.0 * wScale;
   
   // Song Title
-  rect(leftX, appHeight * 9 / paperHeight, appWidth * 85 / paperWidth, appHeight * 23 / paperHeight); 
+  rect(margin, 9.0 * hScale, leftW, 23.0 * hScale);  
   
   // Lyrics
-  rect(leftX, appHeight * 35 / paperHeight, appWidth * 85 / paperWidth, appHeight * 38 / paperHeight); 
+  rect(margin, 35.0 * hScale, leftW, 38.0 * hScale); 
 
-  // Image Box at (0, 73)
-  rect(appWidth * 0 / paperWidth, appHeight * 73 / paperHeight, appWidth * 59 / paperWidth, appHeight * 40 / paperHeight);
+  // Image Box (Now aligned to the same margin as Title/Lyrics)
+  rect(margin, 75.0 * hScale, 60.0 * wScale, 45.0 * hScale);
 
-  // --- 3. RIGHT SIDE (88mm boxes from sketch) ---
-  float rightX = appWidth * 180 / paperWidth; 
-  float rightW = appWidth * 88 / paperWidth;
-  float rightH = appHeight * 19 / paperHeight;
+  // --- 4. RIGHT SIDE (Aligned to Right Margin) ---
+  float rightW = 80.0 * wScale;
+  // Calculate X by taking the full width and subtracting the box and the margin
+  float rightX = appWidth - rightW - margin; 
+  float rightH = 19.0 * hScale;
 
-  rect(rightX, appHeight * 9 / paperHeight, rightW, rightH);
-  rect(rightX, appHeight * 35 / paperHeight, rightW, rightH);
-  rect(rightX, appHeight * 60 / paperHeight, rightW, rightH);
+  rect(rightX, 9.0 * hScale, rightW, rightH);
+  rect(rightX, 35.0 * hScale, rightW, rightH);
+  rect(rightX, 60.0 * hScale, rightW, rightH);
 
-  // --- 4. 10 BUTTON ROW (Y=135) ---
-  float btnW_mm = 25.0; 
-  float btnH_mm = 25.0;
-  float btnY_mm = 135.0;
-  float gap_mm = 2.0;
-  
-  float bW = appWidth * btnW_mm / paperWidth;
-  float bH = appHeight * btnH_mm / paperHeight;
-  float bY = appHeight * btnY_mm / paperHeight;
+  // --- 5. 10 BUTTON ROW (Y=135) ---
+  float btnW_mm = 24.0; 
+  float gap_mm = 3.0;
+  float bW = btnW_mm * wScale;
+  float bH = 25.0 * hScale;
+  float bY = 135.0 * hScale;
 
   for (int i = 0; i < 10; i++) {
-    float xPos = appWidth * (i * (btnW_mm + gap_mm)) / paperWidth;
+    // Buttons start at the margin and space out evenly
+    float xPos = margin + (i * (btnW_mm + gap_mm)) * wScale;
     rect(xPos, bY, bW, bH);
   }
 
-  // --- 5. PROGRESS BAR (The long box at Y=235) ---
-  float progX = appWidth * 0 / paperWidth;
-  float progY = appHeight * 235 / paperHeight;
-  float progW = appWidth * 194 / paperWidth;
-  float progH = appHeight * 10 / paperHeight;
+  // --- 6. PROGRESS BAR (Full Width) ---
+  float progY = 180.0 * hScale;
+  // This makes the bar stretch from the left margin to the right margin perfectly
+  float progW = appWidth - (margin * 2); 
+  float progH = 10.0 * hScale;
   
-  rect(progX, progY, progW, progH); // This is your progress bar!
+  rect(margin, progY, progW, progH); 
 
-  // Shaded Progress Indicator (The little square)
-  fill(100); 
-  rect(appWidth * 50 / paperWidth, progY, appWidth * 10 / paperWidth, progH);
+  // Shaded Progress Indicator
+  fill(180); 
+  rect(margin + (50.0 * wScale), progY, 15.0 * wScale, progH);
   noFill();
 
-  // --- 6. TIME STAMP BOXES (Y=245) ---
-  float timeY = appHeight * 245 / paperHeight;
-  rect(appWidth * 0 / paperWidth, timeY, appWidth * 40 / paperWidth, appHeight * 14 / paperHeight);   // Elapsed
-  rect(appWidth * 182 / paperWidth, timeY, appWidth * 42 / paperWidth, appHeight * 14 / paperHeight); // Remaining
-  rect(appWidth * 224 / paperWidth, timeY, appWidth * 55 / paperWidth, appHeight * 14 / paperHeight); // Total
+  // --- 7. TIME STAMP BOXES (Aligned to Progress Bar Edges) ---
+  float timeY = 195.0 * hScale;
+  float timeH = 14.0 * hScale;
+  
+  // Elapsed Time (Left)
+  rect(margin, timeY, 40.0 * wScale, timeH); 
+  
+  // Remaining & Total (Right aligned)
+  float totalW = 55.0 * wScale;
+  float remainW = 45.0 * wScale;
+  float totalX = appWidth - margin - totalW;
+  float remainX = totalX - remainW;
+  
+  rect(remainX, timeY, remainW, timeH); // Remaining Box
+  rect(totalX, timeY, totalW, timeH);   // Total Box
 
 } // End of draw
