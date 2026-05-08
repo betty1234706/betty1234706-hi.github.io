@@ -1,10 +1,3 @@
-/* Music App, Final Project
-   - Integration of Divs Program into Teacher Template
-   - All coordinates calculated in setup() using unitless ratios
-   - All rect() moved to draw() for persistent visibility
-*/
-
-// Minim Library
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
