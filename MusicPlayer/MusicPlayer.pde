@@ -1,13 +1,22 @@
+/* Music App, Final Project
+ */
+//
+//Minim Library
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
-
-// Global Variables
+//
+/* Global Variables
+ - Possible DIV-vars needed in draw(), etc.
+ - MUST: Music Button-vars, possibly associated DIV-vars
+ */
 int appWidth, appHeight;
-float wScale, hScale, margin;
+// MOVE THESE HERE so they can be "resolved" anywhere in the code
+float paperWidth = 279.0;
+float paperHeight = 216.0;
 
 // DIV Variables
 float titleX, titleY, titleW, titleH;
@@ -17,71 +26,66 @@ float rightX, rightW, rightH, rightY1, rightY2, rightY3;
 float btnW, btnH, btnY, btnGap;
 float progX, progY, progW, progH;
 float timeY, timeH, timeElapsedW, timeRemainW, timeTotalW;
-
+//
 void setup() {
-  // Display
+  //Display
   fullScreen();
   appWidth = displayWidth;
   appHeight = displayHeight;
+  //
+  //DIVs Population using unitless ratios
   
-  // DIVs Population using unitless ratios (millimeters to pixels)
-  float paperWidth = 279.0;
-  float paperHeight = 216.0;
-  wScale = appWidth / paperWidth;
-  hScale = appHeight / paperHeight;
-  margin = 10.0 * wScale; // Standardized left/right margin
-
   // Left Side Population
-  titleX = margin;
-  titleY = 9.0 * hScale;
-  titleW = 85.0 * wScale;
-  titleH = 23.0 * hScale;
+  titleX = appWidth * 10.0 / paperWidth; 
+  titleY = appHeight * 9.0 / paperHeight;
+  titleW = appWidth * 85.0 / paperWidth;
+  titleH = appHeight * 23.0 / paperHeight;
 
-  lyricsX = margin;
-  lyricsY = 35.0 * hScale;
-  lyricsW = 85.0 * wScale;
-  lyricsH = 38.0 * hScale;
+  lyricsX = appWidth * 10.0 / paperWidth;
+  lyricsY = appHeight * 35.0 / paperHeight;
+  lyricsW = appWidth * 85.0 / paperWidth;
+  lyricsH = appHeight * 38.0 / paperHeight;
 
-  imageX = margin;
-  imageY = 75.0 * hScale;
-  imageW = 60.0 * wScale;
-  imageH = 45.0 * hScale;
+  imageX = appWidth * 10.0 / paperWidth;
+  imageY = appHeight * 75.0 / paperHeight;
+  imageW = appWidth * 60.0 / paperWidth;
+  imageH = appHeight * 45.0 / paperHeight;
 
   // Right Side Population
-  rightW = 80.0 * wScale;
-  rightX = appWidth - rightW - margin; 
-  rightH = 19.0 * hScale;
-  rightY1 = 9.0 * hScale;
-  rightY2 = 35.0 * hScale;
-  rightY3 = 60.0 * hScale;
+  rightW = appWidth * 80.0 / paperWidth;
+  rightX = appWidth - rightW - (appWidth * 10.0 / paperWidth); 
+  rightH = appHeight * 19.0 / paperHeight;
+  rightY1 = appHeight * 9.0 / paperHeight;
+  rightY2 = appHeight * 35.0 / paperHeight;
+  rightY3 = appHeight * 60.0 / paperHeight;
 
   // Button Row Population
-  btnW = 24.0 * wScale;
-  btnH = 25.0 * hScale;
-  btnY = 135.0 * hScale;
-  btnGap = 3.0 * wScale;
+  btnW = appWidth * 24.0 / paperWidth;
+  btnH = appHeight * 25.0 / paperHeight;
+  btnY = appHeight * 135.0 / paperHeight;
+  btnGap = appWidth * 3.0 / paperWidth;
 
   // Progress Bar Population
-  progX = margin;
-  progY = 180.0 * hScale;
-  progW = appWidth - (margin * 2);
-  progH = 10.0 * hScale;
+  progX = appWidth * 10.0 / paperWidth;
+  progY = appHeight * 180.0 / paperHeight;
+  progW = appWidth - ((appWidth * 10.0 / paperWidth) * 2);
+  progH = appHeight * 10.0 / paperHeight;
 
   // Time Stamp Population
-  timeY = 195.0 * hScale;
-  timeH = 14.0 * hScale;
-  timeElapsedW = 40.0 * wScale;
-  timeTotalW = 55.0 * wScale;
-  timeRemainW = 45.0 * wScale;
-
+  timeY = appHeight * 195.0 / paperHeight;
+  timeH = appHeight * 14.0 / paperHeight;
+  timeElapsedW = appWidth * 40.0 / paperWidth;
+  timeTotalW = appWidth * 55.0 / paperWidth;
+  timeRemainW = appWidth * 45.0 / paperWidth;
+  
 }//End Setup
-
+//
 void draw() {
-  background(255);
-  noFill();
-  stroke(0);
+  background(255); 
   
   // Draw DIVs
+  noFill();
+  stroke(0);
   rect(titleX, titleY, titleW, titleH);
   rect(lyricsX, lyricsY, lyricsW, lyricsH);
   rect(imageX, imageY, imageW, imageH);
@@ -92,29 +96,24 @@ void draw() {
   
   // Draw 10 Buttons
   for (int i = 0; i < 10; i++) {
-    float xPos = margin + (i * (btnW + btnGap));
+    // Now paperWidth is global, so this line won't error anymore!
+    float xPos = (appWidth * 10.0 / paperWidth) + (i * (btnW + btnGap));
     rect(xPos, btnY, btnW, btnH);
   }
   
   // Draw Progress Bar
   rect(progX, progY, progW, progH);
   
-  // Shaded Progress Indicator (Static for now)
-  fill(200);
-  rect(progX + (50 * wScale), progY, 15 * wScale, progH);
-  noFill();
-  
   // Draw Time Stamps
-  rect(margin, timeY, timeElapsedW, timeH); // Elapsed
-  rect(appWidth - margin - timeTotalW - timeRemainW, timeY, timeRemainW, timeH); // Remaining
-  rect(appWidth - margin - timeTotalW, timeY, timeTotalW, timeH); // Total
-
+  rect(appWidth * 10.0 / paperWidth, timeY, timeElapsedW, timeH);
+  rect(appWidth - (appWidth * 10.0 / paperWidth) - timeTotalW - timeRemainW, timeY, timeRemainW, timeH);
+  rect(appWidth - (appWidth * 10.0 / paperWidth) - timeTotalW, timeY, timeTotalW, timeH);
 }//End Draw
-
+//
 void mousePressed() {
 }//End Mouse Pressed
-
+//
 void keyPressed() {
 }//End Key Pressed
-
+//
 //End MAIN Program
