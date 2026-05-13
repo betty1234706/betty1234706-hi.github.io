@@ -1,20 +1,17 @@
 /* Music App, Final Project
  */
 //
-//Minim Library
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
-//
 /* Global Variables
  - Possible DIV-vars needed in draw(), etc.
  - MUST: Music Button-vars, possibly associated DIV-vars
  */
 int appWidth, appHeight;
-// MOVE THESE HERE so they can be "resolved" anywhere in the code
 float paperWidth = 279.0;
 float paperHeight = 216.0;
 
@@ -33,8 +30,8 @@ void setup() {
   appWidth = displayWidth;
   appHeight = displayHeight;
   //
-  //DIVs Population using unitless ratios
-  
+  //DIVs Population using unitless ratios (i.e. millimeters to pixels)
+  //See Case Study
   // Left Side Population
   titleX = appWidth * 10.0 / paperWidth; 
   titleY = appHeight * 9.0 / paperHeight;
@@ -77,11 +74,28 @@ void setup() {
   timeElapsedW = appWidth * 40.0 / paperWidth;
   timeTotalW = appWidth * 55.0 / paperWidth;
   timeRemainW = appWidth * 45.0 / paperWidth;
-  
+  //
+  //2D Music Symbol Variables
+  //
+  //Directory or Pathway to Images
+  //String-Vars of Folders and File Names
+  //Concatenation of Pathways
+  //PImage Vars + Diensions (width & height)
+  //
+  //DIVs
+  //rect( DivX, DivY, DivWidth, DivHeight ); //See Case Study
+  //rect( songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight );
+  //
+  //2D music Symbol Shapes, 2D shapes needed to draw
+  //
+  //Images & Aspoect Ratio Algoritrhm, including WHILE Loop
+  //image();
+  //
 }//End Setup
 //
 void draw() {
   background(255); 
+  //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
   
   // Draw DIVs
   noFill();
@@ -96,7 +110,6 @@ void draw() {
   
   // Draw 10 Buttons
   for (int i = 0; i < 10; i++) {
-    // Now paperWidth is global, so this line won't error anymore!
     float xPos = (appWidth * 10.0 / paperWidth) + (i * (btnW + btnGap));
     rect(xPos, btnY, btnW, btnH);
   }
@@ -111,6 +124,7 @@ void draw() {
 }//End Draw
 //
 void mousePressed() {
+  //2D Music Symbol Changes: sending Boolean to draw()
 }//End Mouse Pressed
 //
 void keyPressed() {
