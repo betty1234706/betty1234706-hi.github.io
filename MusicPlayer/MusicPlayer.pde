@@ -35,7 +35,6 @@ float imageWidthAdjusted, imageHeightAdjusted;
 boolean playImage = true; 
 
 void setup() {
-  // Display
   fullScreen();
   appWidth = displayWidth;
   appHeight = displayHeight;
@@ -45,7 +44,7 @@ void setup() {
   String pathway1 = imageDirectory + imageName1 + fileExtension;
   musicPic = loadImage(pathway1); 
 
-  // 2. DIVs Population (Using your specific ratios)
+  // 2. DIVs Population
   titleX = appWidth * 10.0 / paperWidth; 
   titleY = appHeight * 9.0 / paperHeight;
   titleW = appWidth * 85.0 / paperWidth;
@@ -56,24 +55,18 @@ void setup() {
   lyricsW = appWidth * 85.0 / paperWidth;
   lyricsH = appHeight * 38.0 / paperHeight;
 
-  // The box for the image
   imageX = appWidth * 10.0 / paperWidth;
   imageY = appHeight * 75.0 / paperHeight;
   imageW = appWidth * 60.0 / paperWidth;
   imageH = appHeight * 45.0 / paperHeight;
 
-  // 3. Aspect Ratio Algorithm
+  // 3. Aspect Ratio Algorithm - HORIZONTAL FIT
   if (musicPic != null) {
-    float musicPicAspectRatio = (float)musicPic.width / (float)musicPic.height;
-    imageWidthAdjusted = imageW;
-    imageHeightAdjusted = imageWidthAdjusted / musicPicAspectRatio;
-    while (imageHeightAdjusted > imageH) {
-      imageWidthAdjusted *= 0.99;
-      imageHeightAdjusted = imageWidthAdjusted / musicPicAspectRatio;
-    }
+    float imgRatio = (float)musicPic.width / (float)musicPic.height;
+    imageWidthAdjusted = imageW; 
+    imageHeightAdjusted = imageWidthAdjusted / imgRatio;
   }
 
-  // Right Side Boxes
   rightW = appWidth * 80.0 / paperWidth;
   rightX = appWidth - rightW - (appWidth * 10.0 / paperWidth); 
   rightH = appHeight * 19.0 / paperHeight;
@@ -81,20 +74,16 @@ void setup() {
   rightY2 = appHeight * 35.0 / paperHeight;
   rightY3 = appHeight * 60.0 / paperHeight;
 
-  // --- BUTTON POPULATION ---
-  // We calculate these once in setup so they don't move
   btnW = appWidth * 24.0 / paperWidth;
   btnH = appHeight * 25.0 / paperHeight;
-  btnY = appHeight * 135.0 / paperHeight; // Adjusted to be below the image
+  btnY = appHeight * 135.0 / paperHeight; 
   btnGap = appWidth * 3.0 / paperWidth;
 
-  // Progress bar
   progX = appWidth * 10.0 / paperWidth;
   progY = appHeight * 180.0 / paperHeight;
   progW = appWidth - ((appWidth * 10.0 / paperWidth) * 2);
   progH = appHeight * 10.0 / paperHeight;
 
-  // Time stamps
   timeY = appHeight * 195.0 / paperHeight;
   timeH = appHeight * 14.0 / paperHeight;
   timeElapsedW = appWidth * 40.0 / paperWidth;
@@ -106,45 +95,84 @@ void setup() {
 void draw() {
   background(255); 
   
+  // --- DRAWING THE IMAGE ---
+  if (playImage == true && musicPic != null) {
+    float yOffset = (imageH - imageHeightAdjusted) / 2.0;
+    image(musicPic, imageX, imageY + yOffset, imageWidthAdjusted, imageHeightAdjusted);
+    
+    noStroke(); fill(255);
+    rect(imageX, imageY - 100, imageW, 100); 
+    rect(imageX, imageY + imageH, imageW, 100); 
+  }
+  
   // --- DRAWING DIV BORDERS ---
   noFill(); stroke(0);
   rect(titleX, titleY, titleW, titleH);
   rect(lyricsX, lyricsY, lyricsW, lyricsH);
   rect(imageX, imageY, imageW, imageH); 
-  
   rect(rightX, rightY1, rightW, rightH);
   rect(rightX, rightY2, rightW, rightH);
   rect(rightX, rightY3, rightW, rightH);
 
-  // --- DRAWING THE IMAGE ---
-  if (playImage == true && musicPic != null) {
-    float xOffset = (imageW - imageWidthAdjusted) / 2.0;
-    float yOffset = (imageH - imageHeightAdjusted) / 2.0;
-    image(musicPic, imageX + xOffset, imageY + yOffset, imageWidthAdjusted, imageHeightAdjusted);
-  }
-  
   // --- DRAWING ALL 10 BUTTONS ---
   for (int i = 0; i < 10; i++) {
-    // This formula ensures all 10 buttons line up horizontally
     float xPos = (appWidth * 10.0 / paperWidth) + (i * (btnW + btnGap));
-    
-    // Hover effect
-    if (mouseX > xPos && mouseX < xPos + btnW && mouseY > btnY && mouseY < btnY + btnH) {
-      fill(220); 
-    } else {
-      fill(255);
-    }
-    
+    fill((mouseX > xPos && mouseX < xPos + btnW && mouseY > btnY && mouseY < btnY + btnH) ? 220 : 255);
     rect(xPos, btnY, btnW, btnH);
     
-    // Basic symbols for reference
-    fill(0);
-    if (i == 4) triangle(xPos+btnW*0.3, btnY+btnH*0.3, xPos+btnW*0.3, btnY+btnH*0.7, xPos+btnW*0.7, btnY+btnH*0.5); // Play
-    if (i == 0) rect(xPos+btnW*0.3, btnY+btnH*0.3, btnW*0.4, btnH*0.4); // Stop
+    fill(0); stroke(0);
+    float cX = xPos + btnW/2;
+    float cY = btnY + btnH/2;
+
+    if (i == 0) { // Stop
+      rect(cX - btnW*0.2, cY - btnH*0.2, btnW*0.4, btnH*0.4);
+    } 
+    else if (i == 1) { // Rewind
+      triangle(cX, cY, cX + btnW*0.2, cY - btnH*0.18, cX + btnW*0.2, cY + btnH*0.18);
+      triangle(cX - btnW*0.2, cY, cX, cY - btnH*0.18, cX, cY + btnH*0.18);
+    } 
+    else if (i == 2) { // Back
+      rect(cX - btnW*0.22, cY - btnH*0.18, btnW*0.08, btnH*0.36);
+      triangle(cX + btnW*0.15, cY - btnH*0.18, cX + btnW*0.15, cY + btnH*0.18, cX - btnW*0.1, cY);
+    } 
+    else if (i == 3) { // Button 4: Reverse 10s Loop (Triangle points LEFT)
+      noFill(); 
+      arc(cX, cY, btnW*0.4, btnH*0.4, -HALF_PI, PI);
+      fill(0); 
+      float triTipX = cX;
+      float triTipY = cY - (btnH * 0.2);
+      triangle(triTipX, triTipY, triTipX + btnW*0.1, triTipY - btnH*0.08, triTipX + btnW*0.1, triTipY + btnH*0.08);
+    } 
+    else if (i == 4) { // Play
+      triangle(cX - btnW*0.15, cY - btnH*0.25, cX - btnW*0.15, cY + btnH*0.25, cX + btnW*0.25, cY);
+    } 
+    else if (i == 5) { // Pause
+      rect(cX - btnW*0.16, cY - btnH*0.2, btnW*0.1, btnH*0.4);
+      rect(cX + btnW*0.06, cY - btnH*0.2, btnW*0.1, btnH*0.4);
+    } 
+    else if (i == 6) { // Button 7: Forward 10s Loop (Triangle points RIGHT)
+      noFill(); 
+      arc(cX, cY, btnW*0.4, btnH*0.4, 0, PI + HALF_PI);
+      fill(0); 
+      float triTipX = cX;
+      float triTipY = cY - (btnH * 0.2);
+      triangle(triTipX, triTipY, triTipX - btnW*0.1, triTipY - btnH*0.08, triTipX - btnW*0.1, triTipY + btnH*0.08);
+    } 
+    else if (i == 7) { // Skip Forward
+      triangle(cX - btnW*0.15, cY - btnH*0.18, cX - btnW*0.15, cY + btnH*0.18, cX + btnW*0.1, cY);
+      rect(cX + btnW*0.14, cY - btnH*0.18, btnW*0.08, btnH*0.36);
+    } 
+    else if (i == 8) { // Fast Forward
+      triangle(cX, cY - btnH*0.18, cX, cY + btnH*0.18, cX + btnW*0.2, cY);
+      triangle(cX - btnW*0.2, cY - btnH*0.18, cX - btnW*0.2, cY + btnH*0.18, cX, cY);
+    } 
+    else if (i == 9) { // Record
+      ellipse(cX, cY, btnW*0.4, btnH*0.4);
+    }
   }
   
   // --- PROGRESS AND TIME ---
-  noFill();
+  noFill(); stroke(0);
   rect(progX, progY, progW, progH);
   rect(appWidth * 10.0 / paperWidth, timeY, timeElapsedW, timeH);
   rect(appWidth - (appWidth * 10.0 / paperWidth) - timeTotalW - timeRemainW, timeY, timeRemainW, timeH);
@@ -153,7 +181,6 @@ void draw() {
 } // End Draw
 
 void mousePressed() {
-  // Check all 10 buttons for clicks
   for (int i = 0; i < 10; i++) {
     float xPos = (appWidth * 10.0 / paperWidth) + (i * (btnW + btnGap));
     if (mouseX > xPos && mouseX < xPos + btnW && mouseY > btnY && mouseY < btnY + btnH) {
@@ -161,9 +188,7 @@ void mousePressed() {
       if (i == 0) playImage = false;
     }
   }
-} // End MousePressed
+}
 
-void keyPressed() {
-} // End KeyPressed
-
+void keyPressed() {}
 // End MAIN Program
