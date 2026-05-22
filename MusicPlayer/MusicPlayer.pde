@@ -29,6 +29,9 @@ float btnW, btnH, btnY, btnGap;
 float progX, progY, progW, progH;
 float timeY, timeH, timeElapsedW, timeRemainW, timeTotalW;
 
+// Exit Button Variables
+float exitX, exitY, exitW, exitH;
+
 // Text Setup, includes text & font variables
 // Literal Text ... String Variables
 String topTxt = "Girlset";
@@ -102,6 +105,12 @@ void setup() {
   timeElapsedW = appWidth * 40.0 / paperWidth;
   timeTotalW = appWidth * 55.0 / paperWidth;
   timeRemainW = appWidth * 45.0 / paperWidth;
+  
+  // Pinning the Exit Button to the absolute top right corner with a smaller footprint
+  exitW = appWidth * 8.0 / paperWidth;
+  exitH = appHeight * 8.0 / paperHeight;
+  exitX = appWidth - exitW;
+  exitY = 0;
   
   uiFont = createFont("Arial", 12); 
   fontSizeTitle = titleH * 0.6; 
@@ -201,12 +210,36 @@ void draw() {
   rect(totalBoxX, timeY, timeTotalW, timeH);
   
   fill(0); textSize(fontSizeTime);
+  textAlign(CENTER, CENTER);
   text(nf((currentMs / 1000) / 60, 2) + ":" + nf((currentMs / 1000) % 60, 2), elapsedBoxX, timeY, timeElapsedW, timeH);
   text("-" + nf(((totalMs - currentMs) / 1000) / 60, 2) + ":" + nf(((totalMs - currentMs) / 1000) % 60, 2), remainBoxX, timeY, timeRemainW, timeH);
   text(nf((totalMs / 1000) / 60, 2) + ":" + nf((totalMs / 1000) % 60, 2), totalBoxX, timeY, timeTotalW, timeH);
+
+  // --- DRAWING THE HOVERABLE EXIT BUTTON ---
+  stroke(0);
+  if (mouseX > exitX && mouseX < exitX + exitW && mouseY > exitY && mouseY < exitY + exitH) {
+    fill(255, 0, 0); // Red highlight on hover
+  } else {
+    fill(255); 
+  }
+  rect(exitX, exitY, exitW, exitH);
+  
+  // Draw the "X" inside the box
+  if (mouseX > exitX && mouseX < exitX + exitW && mouseY > exitY && mouseY < exitY + exitH) {
+    fill(255); //
+  } else {
+    fill(0); // 
+  }
+  textSize(exitH * 0.6); 
+  text("X", exitX, exitY, exitW, exitH);
 } // End Draw
 
 void mousePressed() {
+  // Exit action
+  if (mouseX > exitX && mouseX < exitX + exitW && mouseY > exitY && mouseY < exitY + exitH) {
+    exit();
+  }
+
   for (int i = 0; i < 10; i++) {
     float xPos = (appWidth * 10.0 / paperWidth) + (i * (btnW + btnGap));
     if (mouseX > xPos && mouseX < xPos + btnW && mouseY > btnY && mouseY < btnY + btnH) {
